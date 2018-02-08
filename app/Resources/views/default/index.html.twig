@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="hints">
+        <h3>Hints (case insensitive):</h3>
+        Big Ben<br />
+        Buckingham Palace<br />
+        Tower Bridge<br />
+        Trafalgar Square<br />
+        Westminster Abbey
+    </div>
+    <form id="search" action="">
+        <input type="text" name="str" id="str" placeholder="landmark name..." />
+        <button type="submit" name="send" id="send">Search</button><br />
+        <input type="radio" name="where" value="db" checked> In the DB<br />
+        <input type="radio" name="where" value="api"> By Google REST API
+    </form>
+    <div id="alert"></div>
+    <div class="hidden"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").bind('submit',function() {
+                alert_div = $("#alert");
+                alert_div.html('');
+                hidden = $(".hidden");
+                hidden.hide();
+                var value = $('#str').val();
+
+                if (document.getElementsByName('where')[1].checked) { // API
+                    $.post('/landmark/searchnew',{name:value}, function(data){
+                        if (!data) {
+                            alert_div.html('No landmark by that name on Google Maps !');
+                        } else {
+                            alert_div.html('Landmark found!<br />place_id = ' + data + '<br />TODO: add to database');
+                        }
+                    });
+                }
+                else { // DB
+                    $.post('/landmark/search',{name:value}, function(data){
+                        if (!data) {
+                            alert_div.html('No landmark by that name in our database !');
+                        } else {
+                            hidden.html('');
+                            hidden.show('fast', function () {
+                                $(this).append('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAgcjiT52MjanfXcA9xcCcjuPV159gnEwM&q=place_id:' + data + '" allowfullscreen></iframe>');
+                            });
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

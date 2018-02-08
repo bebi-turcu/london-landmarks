@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Landmarks list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Placeid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for landmark in landmarks %}
+            <tr>
+                <td><a href="{{ path('landmark_show', { 'id': landmark.id }) }}">{{ landmark.id }}</a></td>
+                <td>{{ landmark.name }}</td>
+                <td>{{ landmark.placeId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('landmark_show', { 'id': landmark.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

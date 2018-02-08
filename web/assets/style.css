@@ -1,0 +1,33 @@
+header {
+	background-color:rgb(255, 255, 193);
+	padding:0 5px 5px;
+	box-shadow:-5px 8px 6px RGB(136, 136, 136);
+}
+.menu {
+	padding:3px 15px;
+}
+#search {
+	display:inline-block;
+	margin:0 80px 30px;
+	text-align:left;
+	box-shadow:-5px 8px 6px RGB(136, 136, 136);
+	padding:5px;
+	border:1px solid #eee;
+}
+.hints {
+	display:inline-block;
+	margin-bottom:60px 0;
+}
+#alert {
+	color:red;
+	padding:20px;
+}
+.hidden {
+    display:none;
+    height:450px;
+    width:600px;
+}
+iframe {
+    height:inherit;
+    width:inherit;
+}
