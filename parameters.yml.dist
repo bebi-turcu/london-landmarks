@@ -1,0 +1,17 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    api_key: #_use_your_own_key_and_remove_the_hashtags_#
+
+# Get your own free api key at https://developers.google.com/maps/documentation/geocoding/get-api-key
+# If you leave the key empty here, you may only make a few queries per day to Google's API
